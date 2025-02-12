@@ -9,7 +9,8 @@ This is a self study notebook of assembly x86.
 [3. Variables](#variables) <br />
 &emsp; [3.1 Variable sizes](#variable-sizes) <br />
 &emsp; [3.2 Define strings](#define-strings) <br />
-&emsp; [3.3 Comments](#comments)
+&emsp; [3.3 Comments](#comments) <br />
+&emsp; [3.4 Uninitilized variables](#uninitilized-variables) <br />
 
 ## [Introduction](https://en.wikipedia.org/wiki/X86_assembly_language)
 x86 assembly language is a family of low-level programming languages that are used to produce object code for the x86 class of processors. 
@@ -38,7 +39,7 @@ In x86 processors, we can store at most **32-bit** of data in a register. Modern
 - **ESP** (Stack pointer)
 - **EBP** (Base pointer)
 
-Additionally, there are other types of registers such as segment registers, control registers, status registers, and the instruction pointer. However, there are only eight general-purpose registers.
+Additionally, there are other types of registers such as **segment registers**, **control registers**, **status registers**, and the **instruction pointer**. However, there are only eight general-purpose registers.
 
 ## General purpose registers
 As mentioned earlier, the **EAX, EBX, ECX, and EDX** registers can store **32 bit** of data, but their structure is more granular. Each of these registers is divided into three sections, allowing for flexible data manipulation.  
@@ -97,3 +98,19 @@ Oh i just forgot to tell you about ...
 ## Comments
 **Comments** are pieces of text in the code that do not get compiled or executed. They are only there for the programmer to understand the code better. The assembler ignores comments entirely. <br />
 In assembly language, you can use comments by placing a **`semicolon (;)`** at the beginning of the comment. Everything after the semicolon on that line is considered a comment and will not be processed by the assembler.
+
+## Uninitilized variables
+Uninitilized variables in assembly are really dangerous becuase they'll get **garbage value** that you don't know them, But we want to know everything right? So we define uninitilized variables in **`.bss`** section like this: 
+```nasm
+section .bss
+uninitilized_var resb 4 
+```
+Oh what is resb? In assembly when you want to define a variable without initilize it you have to reserve a memory for that and we do this with these keywords: <br />
+- **`resb`**: <br />
+&emsp; Size: **1 byte** (8-bit) 
+
+- **`resw`**: <br />
+&emsp; Size: **2 bytes** (16-bit)
+
+- **`resd`**: <br />
+&emsp; Size: **4 bytes** (32-bit)
