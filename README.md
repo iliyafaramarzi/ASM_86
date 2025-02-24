@@ -114,3 +114,4 @@ Oh what is resb? In assembly when you want to define a variable without initiliz
 
 - **`resd`**: <br />
 &emsp; Size: **4 bytes** (32-bit)
+
