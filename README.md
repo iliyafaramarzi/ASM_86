@@ -75,20 +75,13 @@ CS register is the Code register that specifie where is the code in the memory a
 
 **`IP + (16 * CS) = physical address`**
 
-| logical adr | physical adr|
-| ------ | ------|
-| test | test |
-| test | test |
-| test | test |
-| test | test |
-
-
-&emsp;**Logical adr** &emsp; &emsp; **Physical adr** &emsp; &emsp; **Assembly code**<br />
-&emsp; 1132:0100 &emsp; -> &emsp; 11420 &emsp; &emsp; &emsp; &emsp; MOV AL ,10<br />
-&emsp; 1132:0102 &emsp; -> &emsp; 11422 &emsp; &emsp; &emsp; &emsp; MOV AH,10<br />
-&emsp; 1132:0104 &emsp; -> &emsp; 11424 &emsp; &emsp; &emsp; &emsp; MOV BL ,10<br />
-&emsp; 1132:0106 &emsp; -> &emsp; 11426 &emsp; &emsp; &emsp; &emsp; MOV BH,10<br />
-&emsp; 1132:0108 &emsp; -> &emsp; 11428 &emsp; &emsp; &emsp; &emsp; MOV CL ,10<br />
+| logical adr | physical adr | Assembly code |
+| :---: | :---: | :---: |
+| 1132:0100 | 11420 | MOV AL ,10 |
+| 1132:0102 | 11422 | MOV AH ,10 |
+| 1132:0104 | 11424 | MOV BL ,10 |
+| 1132:0106 | 11426 | MOV BH ,10 |
+| 1132:0108 | 11428 | MOV CL ,10 |
 
 > ❓ Why IP increase by 2 not by one?
 
