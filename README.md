@@ -6,6 +6,7 @@ This is a self study notebook of assembly x86.
 [1. Introduction](#introduction) <br />
 [2. Registers](#registers) <br />
 &emsp; [2.1. General purpose registers](#general-purpose-registers) <br />
+&emsp; [2.2. Segment registers](#segment-registers) <br />
 [3. Variables](#variables) <br />
 &emsp; [3.1 Variable sizes](#variable-sizes) <br />
 &emsp; [3.2 Define strings](#define-strings) <br />
@@ -59,6 +60,38 @@ For example if you define **`EAX with 0x12345678 value`**, **`AX will be 0x5678`
 **AL**  = 0x78 <br />
 
 When referring to registers in assembly language, the names are not case-sensitive. For example, the names `EAX` and `eax` refer to the same register.
+
+## Segment registers
+Segment registers used to access different memory addresses. There are six different segment registers that you can use them:
+- **`CS`** : Code segment
+- **`DS`** : Data segment
+- **`SS`** : Stack segment
+- **`GS`** : Extra segment
+- **`FS`** : Extra segment
+- **`ES`** : Extra segment
+
+### CS register
+CS register is the Code register that specifie where is the code in the memory and which code should execute. CS is a part of the **logical address**. logical address consists of two parts, **CS** and **IP**. CS is the mempry address of code and IP is a counter that specifie next line of code that should be executed. When you use this formula you can find physical address of the next line of code in the memory:
+
+**`IP + (16 * CS) = physical address`**
+
+&emsp;**Logical adr** &emsp; &emsp; **Physical adr** &emsp; &emsp; **Assembly code**<br />
+&emsp; 1132:0100 &emsp; -> &emsp; 11420 &emsp; &emsp; &emsp; &emsp; MOV AL ,10<br />
+&emsp; 1132:0102 &emsp; -> &emsp; 11422 &emsp; &emsp; &emsp; &emsp; MOV AH,10<br />
+&emsp; 1132:0104 &emsp; -> &emsp; 11424 &emsp; &emsp; &emsp; &emsp; MOV BL ,10<br />
+&emsp; 1132:0106 &emsp; -> &emsp; 11426 &emsp; &emsp; &emsp; &emsp; MOV BH,10<br />
+&emsp; 1132:0108 &emsp; -> &emsp; 11428 &emsp; &emsp; &emsp; &emsp; MOV CL ,10<br />
+
+> ❓ Why IP increase by 2 not by one?
+
+
+> ⚠️ You can't change value of CS directly using MOV command. You have to move your value to a register then you can mov your register value to the CS register.  
+
+> ⚠️ Also when you are using the JMP or CALL commands you are changing the CS register.
+
+### Example of CS usgae
+When you turn on your computer it will copy bios from ROM to the RAM and change CS address to where bios code starts, Then when bios check every thins it will copy bootloader to the RAM and change CS to there, then bootloader do this again for OS, And now your system is ready to use.  
+
 
 ## Variables 
 Variables in assembly x86 are stored in the `.data` section and have a name and size.<br />
