@@ -75,6 +75,14 @@ CS register is the Code register that specifie where is the code in the memory a
 
 **`IP + (16 * CS) = physical address`**
 
+| logical adr | physical adr|
+| ------ | ------|
+| test | test |
+| test | test |
+| test | test |
+| test | test |
+
+
 &emsp;**Logical adr** &emsp; &emsp; **Physical adr** &emsp; &emsp; **Assembly code**<br />
 &emsp; 1132:0100 &emsp; -> &emsp; 11420 &emsp; &emsp; &emsp; &emsp; MOV AL ,10<br />
 &emsp; 1132:0102 &emsp; -> &emsp; 11422 &emsp; &emsp; &emsp; &emsp; MOV AH,10<br />
