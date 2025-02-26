@@ -7,6 +7,10 @@ This is a self study notebook of assembly x86.
 [2. Registers](#registers) <br />
 &emsp; [2.1. General purpose registers](#general-purpose-registers) <br />
 &emsp; [2.2. Segment registers](#segment-registers) <br />
+&emsp; &emsp; [2.2.1. CS register](#cs-register) <br />
+&emsp; &emsp; [2.2.2. DS register](#ds-register) <br />
+&emsp; &emsp; [2.2.3. SS register](#ss-register) <br />
+&emsp; &emsp; [2.2.4. Extra segment registers](#extra-segment-registers) <br />
 [3. Variables](#variables) <br />
 &emsp; [3.1 Variable sizes](#variable-sizes) <br />
 &emsp; [3.2 Define strings](#define-strings) <br />
@@ -92,6 +96,34 @@ CS register is the Code register that specifie where is the code in the memory a
 
 ### Example of CS usgae
 When you turn on your computer it will copy bios from ROM to the RAM and change CS address to where bios code starts, Then when bios check every thins it will copy bootloader to the RAM and change CS to there, then bootloader do this again for OS, And now your system is ready to use.  
+
+### DS register
+The DS (Data Segment) register is used to **specify the base address of the memory segment where data is stored**. This helps in accessing data efficiently and safely.
+
+In older systems **(16-bit Real Mode)**, the DS register must be **manually** set by the programmer because the operating system does not fully manage memory.
+
+In modern operating systems **(32-bit and 64-bit Protected Mode)**, the operating system **automatically** sets the DS register, and direct manipulation of segment registers is usually unnecessary. This is because modern systems use paging and the Global Descriptor Table (GDT) for memory management, making segment registers less relevant for addressing.
+
+Thus, while DS was crucial in older systems, it is mostly managed by the OS in modern architectures.
+
+### SS register
+The SS (Stack Segment) register is used to **define the base address of the stack in memory**. The stack is a special memory region used for storing function return addresses, local variables, and CPU registers during function calls and interrupts.
+
+In older systems **(16-bit Real Mode)**, the SS register must be **manually** set to ensure correct stack operations.
+
+In modern operating systems **(32-bit and 64-bit Protected Mode)**, the operating system **automatically** manages the SS register, so manual configuration is usually unnecessary. The stack is typically handled through memory paging, and modern architectures rely on virtual memory rather than direct segment manipulation.
+
+Since the stack is essential for function execution and system stability, the SS register plays a crucial role in memory management, even though its direct usage has decreased in modern systems.
+
+
+## Extra segment registers
+The extra segment registers (ES, FS, GS) are used to access additional memory segments beyond the default CS (Code Segment), DS (Data Segment), and SS (Stack Segment). These registers provide more flexibility for handling different types of data and system structures.
+
+**`ES (Extra Segment)`**: Traditionally used for **string operations and data transfers**, especially with instructions like MOVS, LODS, and STOS.
+
+**`FS & GS`**: In modern 32-bit and 64-bit systems, these registers are often used by the operating system to store **thread-specific data** or **access system-related structures**. For example, in Windows, the FS register points to the **Thread Information Block** (TIB), while in Linux, the GS register is commonly used for **thread-local storage** (TLS).
+
+While these registers were originally intended for segment-based memory access, modern systems primarily use them for specialized purposes, such as multi-threading and system-level optimizations.
 
 
 ## Variables 
